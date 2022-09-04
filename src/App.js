@@ -12,7 +12,6 @@ import Contact from './views/Contact'
 import NoMatch from './views/NoMatch'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
-import GithubCorner from './components/GithubCorner'
 import ServiceWorkerNotifications from './components/ServiceWorkerNotifications'
 import data from './data.json'
 import { slugify } from './util/url'
@@ -21,7 +20,7 @@ import { documentHasTerm, getCollectionTerms } from './util/collection'
 const RouteWithMeta = ({ component: Component, ...props }) => (
   <Route
     {...props}
-    render={routeProps => (
+    render={(routeProps) => (
       <Fragment>
         <Meta {...props} />
         <Component {...routeProps} {...props} />
@@ -32,39 +31,40 @@ const RouteWithMeta = ({ component: Component, ...props }) => (
 
 class App extends Component {
   state = {
-    data
+    data,
   }
 
   getDocument = (collection, name) =>
     this.state.data[collection] &&
-    this.state.data[collection].filter(page => page.name === name)[0]
+    this.state.data[collection].filter((page) => page.name === name)[0]
 
-  getDocuments = collection => this.state.data[collection] || []
+  getDocuments = (collection) => this.state.data[collection] || []
 
-  render () {
+  render() {
     const globalSettings = this.getDocument('settings', 'global')
     const {
       siteTitle,
       siteUrl,
       siteDescription,
       socialMediaCard,
-      headerScripts
+      headerScripts,
     } = globalSettings
 
     const posts = this.getDocuments('posts').filter(
-      post => post.status !== 'Draft'
+      (post) => post.status !== 'Draft'
     )
     const categoriesFromPosts = getCollectionTerms(posts, 'categories')
     const postCategories = this.getDocuments('postCategories').filter(
-      category => categoriesFromPosts.indexOf(category.name.toLowerCase()) >= 0
+      (category) =>
+        categoriesFromPosts.indexOf(category.name.toLowerCase()) >= 0
     )
 
     return (
       <Router>
-        <div className='React-Wrap'>
+        <div className="React-Wrap">
           <ScrollToTop />
           <ServiceWorkerNotifications reloadOnUpdate />
-          <GithubCorner url='https://github.com/Jinksi/netlify-cms-react-starter' />
+          {/* <GithubCorner url='https://github.com/Jinksi/netlify-cms-react-starter' /> */}
           <Helmet
             defaultTitle={siteTitle}
             titleTemplate={`${siteTitle} | %s`}
@@ -88,27 +88,27 @@ class App extends Component {
 
           <Switch>
             <RouteWithMeta
-              path='/'
+              path="/"
               exact
               component={Home}
               description={siteDescription}
               fields={this.getDocument('pages', 'home')}
             />
             <RouteWithMeta
-              path='/about/'
+              path="/about/"
               exact
               component={About}
               fields={this.getDocument('pages', 'about')}
             />
             <RouteWithMeta
-              path='/contact/'
+              path="/contact/"
               exact
               component={Contact}
               fields={this.getDocument('pages', 'contact')}
               siteTitle={siteTitle}
             />
             <RouteWithMeta
-              path='/blog/'
+              path="/blog/"
               exact
               component={Blog}
               fields={this.getDocument('pages', 'blog')}
@@ -133,10 +133,10 @@ class App extends Component {
               )
             })}
 
-            {postCategories.map(postCategory => {
+            {postCategories.map((postCategory) => {
               const slug = slugify(postCategory.title)
               const path = slugify(`/blog/category/${slug}`)
-              const categoryPosts = posts.filter(post =>
+              const categoryPosts = posts.filter((post) =>
                 documentHasTerm(post, 'categories', slug)
               )
               return (

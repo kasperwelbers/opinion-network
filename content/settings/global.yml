@@ -1,12 +1,8 @@
-siteTitle: Netlify CMS + React Starter
-siteUrl: 'https://netlify-cms-react-starter.netlify.com'
+siteTitle: Website for the OPINION COST Network
+siteUrl: 'https://opinion-network.eu'
 siteDescription: >-
-  A starter project for creating lightning-fast, offline-first websites with
-  Netlify CMS and React.
+  Website based on template from https://netlify-cms-react-starter.netlify.com
 socialMediaCard:
-  image: /images/uploads/card-og.png
-  twitterCreatorAccount: '@Jinksi'
-  twitterSiteAccount: ''
 headerScripts: |-
   <!-- Add your analytics scripts / verification meta here -->
 enableServiceWorker: false
