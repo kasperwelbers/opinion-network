@@ -1,4 +1,7 @@
 .Footer {
   padding: 1rem 0;
-  background: var(--lightGrey);
+  color: grey;
+  width: 100%;
+  text-align: left;
+  height: 40px;
 }

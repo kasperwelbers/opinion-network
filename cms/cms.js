@@ -3,7 +3,7 @@ import React from 'react'
 import '../src/globalStyles.css'
 import data from '../src/data.json'
 import Home from '../src/views/Home'
-import About from '../src/views/About'
+import WorkingGroups from '../src/views/WorkingGroups'
 import Contact from '../src/views/Contact'
 import Blog from '../src/views/Blog'
 import SinglePost from '../src/views/SinglePost'
@@ -17,7 +17,7 @@ CMS.registerPreviewStyle(
 CMS.registerPreviewStyle('/admin/cms.bundle.css')
 
 const getDocument = (collection, name) =>
-  data[collection] && data[collection].filter(page => page.name === name)[0]
+  data[collection] && data[collection].filter((page) => page.name === name)[0]
 const getDocuments = (collection, name) => data[collection]
 
 const globalSettings = getDocument('settings', 'global')
@@ -27,8 +27,8 @@ const posts = getDocuments('posts')
 CMS.registerPreviewTemplate('home-page', ({ entry }) => (
   <Home fields={entry.toJS().data} />
 ))
-CMS.registerPreviewTemplate('about-page', ({ entry }) => (
-  <About fields={entry.toJS().data} />
+CMS.registerPreviewTemplate('wg-page', ({ entry }) => (
+  <WorkingGroups fields={entry.toJS().data} />
 ))
 CMS.registerPreviewTemplate('contact-page', ({ entry }) => (
   <Contact fields={entry.toJS().data} siteTitle={globalSettings.siteTitle} />

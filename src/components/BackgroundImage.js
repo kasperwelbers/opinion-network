@@ -13,7 +13,7 @@ export default class BackgroundImage extends React.Component {
     className: '',
     contain: false,
     opacity: 1,
-    imageSize: 1800
+    imageSize: 1800,
   }
 
   state = {
@@ -21,27 +21,27 @@ export default class BackgroundImage extends React.Component {
       this.props.src.indexOf('http') === 0
         ? ''
         : getImageSrc(
-          this.props.src,
-          this.props.lazy ? 10 : this.props.imageSize
-        ),
+            this.props.src,
+            this.props.lazy ? 10 : this.props.imageSize
+          ),
     dataSrc: getImageSrc(this.props.src, this.props.imageSize),
-    loaded: false
+    loaded: false,
   }
 
-  handleIntersection = e => {
+  handleIntersection = (e) => {
     if (e.isIntersecting) {
       const img = new Image()
       img.src = this.state.dataSrc
       img.onload = () => {
         this.setState({
           src: this.state.dataSrc,
-          loaded: true
+          loaded: true,
         })
       }
     }
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.src === nextProps.src) return
 
     this.setState({
@@ -49,11 +49,11 @@ export default class BackgroundImage extends React.Component {
         nextProps.src,
         nextProps.lazy ? 10 : this.props.imageSize
       ),
-      dataSrc: getImageSrc(nextProps.src, this.props.imageSize)
+      dataSrc: getImageSrc(nextProps.src, this.props.imageSize),
     })
   }
 
-  render () {
+  render() {
     let { className, contain, opacity, lazy, imageSize } = this.props
     let { loaded, src } = this.state
 
@@ -64,7 +64,9 @@ export default class BackgroundImage extends React.Component {
           style={{
             backgroundImage: `url(${getImageSrc(this.props.src, imageSize)})`,
             backgroundSize: contain ? 'contain' : 'cover',
-            opacity: opacity
+            backgroundRepeat: 'no-repeat',
+
+            opacity: opacity,
           }}
         />
       )
@@ -75,7 +77,7 @@ export default class BackgroundImage extends React.Component {
     const options = {
       onChange: this.handleIntersection,
       onlyOnce: true,
-      rootMargin: '0% 0% 100%'
+      rootMargin: '0% 0% 100%',
     }
 
     return (
@@ -85,7 +87,8 @@ export default class BackgroundImage extends React.Component {
           style={{
             backgroundImage: `url(${src})`,
             backgroundSize: contain ? 'contain' : 'cover',
-            opacity: opacity
+            backgroundRepeat: 'no-repeat',
+            opacity: opacity,
           }}
         />
       </Observer>
@@ -94,5 +97,5 @@ export default class BackgroundImage extends React.Component {
 }
 
 BackgroundImage.propTypes = {
-  src: PropTypes.string.isRequired
+  src: PropTypes.string.isRequired,
 }

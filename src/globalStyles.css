@@ -1,11 +1,15 @@
 :root {
-  --primary: #0984d2;
-  --primary-light: #6fadff;
+  /* --primary: #0984d2;
+  --primary-light: #6fadff; */
+  --primary: #003d30;
+  --primary-light: #a8cfc7;
   --secondary: #212121;
   --lightGrey: whitesmoke;
   --midGrey: #cacaca;
   --darkGrey: #272727;
   --danger: #ff3d3d;
+  --lightGreen: #a8cfc7;
+  --darkGreen: #306156;
   --font-primary: 'Open Sans', sans-serif;
   --font-system: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -204,4 +208,58 @@ blockquote {
       rgba(255, 255, 255, 0) 50%,
       rgba(255, 255, 255, 0)
     );
+}
+
+.left-in {
+  --slide-from: -100%;
+  animation: slideIn 0.5s;
+  -webkit-animation: slideIn 0.5s;
+}
+
+.right-in {
+  --slide-from: 100%;
+  animation: slideIn 0.5s;
+  -webkit-animation: slideIn 0.5s;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(var(--slide-from, -100%))
+      translateY(var(--slide-from-y, -100%));
+  }
+  100% {
+    transform: translateX(0%) translateY(0%);
+  }
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: translateX(var(--slide-from, -100%))
+      translateY(var(--slide-from-y, -100%));
+  }
+  100% {
+    -webkit-transform: translateX(0%) translateY(0%);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s;
+  -webkit-animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

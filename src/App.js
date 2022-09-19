@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 import ScrollToTop from './components/ScrollToTop'
 import Meta from './components/Meta'
 import Home from './views/Home'
-import About from './views/About'
+import WorkingGroups from './views/WorkingGroups'
 import Blog from './views/Blog'
 import SinglePost from './views/SinglePost'
 import Contact from './views/Contact'
@@ -53,6 +53,7 @@ class App extends Component {
     const posts = this.getDocuments('posts').filter(
       (post) => post.status !== 'Draft'
     )
+    const workinggroups = this.getDocuments('workinggroups')
     const categoriesFromPosts = getCollectionTerms(posts, 'categories')
     const postCategories = this.getDocuments('postCategories').filter(
       (category) =>
@@ -62,99 +63,138 @@ class App extends Component {
     return (
       <Router>
         <div className="React-Wrap">
-          <ScrollToTop />
-          <ServiceWorkerNotifications reloadOnUpdate />
-          {/* <GithubCorner url='https://github.com/Jinksi/netlify-cms-react-starter' /> */}
-          <Helmet
-            defaultTitle={siteTitle}
-            titleTemplate={`${siteTitle} | %s`}
-          />
-          <Meta
-            headerScripts={headerScripts}
-            absoluteImageUrl={
-              socialMediaCard &&
-              socialMediaCard.image &&
-              siteUrl + socialMediaCard.image
-            }
-            twitterCreatorAccount={
-              socialMediaCard && socialMediaCard.twitterCreatorAccount
-            }
-            twitterSiteAccount={
-              socialMediaCard && socialMediaCard.twitterSiteAccount
-            }
-          />
-
-          <Nav />
-
-          <Switch>
-            <RouteWithMeta
-              path="/"
-              exact
-              component={Home}
-              description={siteDescription}
-              fields={this.getDocument('pages', 'home')}
+          <div>
+            <ScrollToTop />
+            <ServiceWorkerNotifications reloadOnUpdate />
+            {/* <GithubCorner url='https://github.com/Jinksi/netlify-cms-react-starter' /> */}
+            <Helmet
+              defaultTitle={siteTitle}
+              titleTemplate={`${siteTitle} | %s`}
             />
-            <RouteWithMeta
-              path="/about/"
-              exact
-              component={About}
-              fields={this.getDocument('pages', 'about')}
-            />
-            <RouteWithMeta
-              path="/contact/"
-              exact
-              component={Contact}
-              fields={this.getDocument('pages', 'contact')}
-              siteTitle={siteTitle}
-            />
-            <RouteWithMeta
-              path="/blog/"
-              exact
-              component={Blog}
-              fields={this.getDocument('pages', 'blog')}
-              posts={posts}
-              postCategories={postCategories}
+            <Meta
+              headerScripts={headerScripts}
+              absoluteImageUrl={
+                socialMediaCard &&
+                socialMediaCard.image &&
+                siteUrl + socialMediaCard.image
+              }
+              twitterCreatorAccount={
+                socialMediaCard && socialMediaCard.twitterCreatorAccount
+              }
+              twitterSiteAccount={
+                socialMediaCard && socialMediaCard.twitterSiteAccount
+              }
             />
 
-            {posts.map((post, index) => {
-              const path = slugify(`/blog/${post.title}`)
-              const nextPost = posts[index - 1]
-              const prevPost = posts[index + 1]
-              return (
-                <RouteWithMeta
-                  key={path}
-                  path={path}
-                  exact
-                  component={SinglePost}
-                  fields={post}
-                  nextPostURL={nextPost && slugify(`/blog/${nextPost.title}/`)}
-                  prevPostURL={prevPost && slugify(`/blog/${prevPost.title}/`)}
-                />
-              )
-            })}
+            <Nav />
+          </div>
+          <div style={{ flex: '1 1 auto', height: '0' }}>
+            <Switch>
+              <RouteWithMeta
+                path="/"
+                exact
+                component={Home}
+                description={siteDescription}
+                fields={this.getDocument('pages', 'home')}
+              />
+              <RouteWithMeta
+                path="/workinggroups/"
+                exact
+                component={WorkingGroups}
+                fields={this.getDocument('pages', 'workinggroupspage')}
+                workinggroups={workinggroups}
+              />
+              <RouteWithMeta
+                path="/contact/"
+                exact
+                component={Contact}
+                fields={this.getDocument('pages', 'contact')}
+                siteTitle={siteTitle}
+              />
+              <RouteWithMeta
+                path="/blog/"
+                exact
+                component={Blog}
+                fields={this.getDocument('pages', 'blog')}
+                posts={posts}
+                postCategories={postCategories}
+              />
 
-            {postCategories.map((postCategory) => {
-              const slug = slugify(postCategory.title)
-              const path = slugify(`/blog/category/${slug}`)
-              const categoryPosts = posts.filter((post) =>
-                documentHasTerm(post, 'categories', slug)
-              )
-              return (
-                <RouteWithMeta
-                  key={path}
-                  path={path}
-                  exact
-                  component={Blog}
-                  fields={this.getDocument('pages', 'blog')}
-                  posts={categoryPosts}
-                  postCategories={postCategories}
-                />
-              )
-            })}
+              {posts.map((post, index) => {
+                const path = slugify(`/blog/${post.title}`)
+                const nextPost = posts[index - 1]
+                const prevPost = posts[index + 1]
+                return (
+                  <RouteWithMeta
+                    key={path}
+                    path={path}
+                    exact
+                    component={SinglePost}
+                    fields={post}
+                    nextPostURL={
+                      nextPost && slugify(`/blog/${nextPost.title}/`)
+                    }
+                    prevPostURL={
+                      prevPost && slugify(`/blog/${prevPost.title}/`)
+                    }
+                  />
+                )
+              })}
 
-            <Route render={() => <NoMatch siteUrl={siteUrl} />} />
-          </Switch>
-          <Footer />
+              {/* <RouteWithMeta
+                key={path}
+                path={path}
+                exact
+                component={WorkingGroups}
+                fields={this.getDocument('pages', 'workinggroups')}
+                workingroups={workingroups}
+                postCategories={postCategories}
+              /> */}
+
+              {/* {workingroups.map((group, index) => {
+                const slug = slugify(group.title)
+                const path = slugify(`/workinggroups/${slug}`)
+                const categoryPosts = posts.filter((post) =>
+                  documentHasTerm(post, 'categories', slug)
+                )
+                return (
+                  <RouteWithMeta
+                    key={path}
+                    path={path}
+                    exact
+                    component={Blog}
+                    fields={this.getDocument('pages', 'blog')}
+                    posts={categoryPosts}
+                    postCategories={postCategories}
+                  />
+                )
+              })} */}
+
+              {postCategories.map((postCategory) => {
+                const slug = slugify(postCategory.title)
+                const path = slugify(`/blog/category/${slug}`)
+                const categoryPosts = posts.filter((post) =>
+                  documentHasTerm(post, 'categories', slug)
+                )
+                return (
+                  <RouteWithMeta
+                    key={path}
+                    path={path}
+                    exact
+                    component={Blog}
+                    fields={this.getDocument('pages', 'blog')}
+                    posts={categoryPosts}
+                    postCategories={postCategories}
+                  />
+                )
+              })}
+
+              <Route render={() => <NoMatch siteUrl={siteUrl} />} />
+            </Switch>
+          </div>
+          <div>
+            <Footer />
+          </div>
         </div>
       </Router>
     )
