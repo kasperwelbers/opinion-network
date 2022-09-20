@@ -13,10 +13,10 @@ const yaml = require('js-yaml')
 
 const options = {
   contentDir: './content/',
-  outputFile: './src/data.json'
+  outputFile: './src/data.json',
 }
 
-const getCollectionType = filePath => {
+const getCollectionType = (filePath) => {
   const pathParsed = path.parse(filePath)
   const objectKey = pathParsed.dir
     .replace(options.contentDir, '')
@@ -24,30 +24,30 @@ const getCollectionType = filePath => {
   return `${objectKey}`
 }
 
-const getDocumentName = filePath => {
+const getDocumentName = (filePath) => {
   const pathParsed = path.parse(filePath)
   return `${pathParsed.name}`
 }
 
-const getDocumentExt = filePath => {
+const getDocumentExt = (filePath) => {
   const pathParsed = path.parse(filePath)
   return `${pathParsed.ext}`
 }
 
-const parseMarkdown = data => {
+const parseMarkdown = (data) => {
   data = matter(data)
   data = { ...data, ...data.data }
   delete data.data
   return JSON.stringify(data)
 }
 
-const parseYaml = data => {
-  data = yaml.safeLoad(data, 'utf8') || {}
+const parseYaml = (data) => {
+  data = yaml.load(data, 'utf8') || {}
   return JSON.stringify(data)
 }
 
-const getFileContents = filePath => {
-  return readFile(filePath, 'utf8').then(data => {
+const getFileContents = (filePath) => {
+  return readFile(filePath, 'utf8').then((data) => {
     if (getDocumentExt(filePath) === '.md') {
       data = parseMarkdown(data)
     }
@@ -64,7 +64,7 @@ const getFileContents = filePath => {
   })
 }
 
-const readFiles = async paths => Promise.all(paths.map(getFileContents))
+const readFiles = async (paths) => Promise.all(paths.map(getFileContents))
 
 const combineJSON = async () => {
   // mergeCustomiser concats arrays items

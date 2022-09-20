@@ -4,7 +4,7 @@ const yaml = require('js-yaml')
 const mediaFolder = 'public/images/uploads'
 const publicFolder = '/images/uploads'
 
-const b64DecodeUnicode = str =>
+const b64DecodeUnicode = (str) =>
   // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings#30106551
   decodeURIComponent(
     Array.prototype.map
@@ -14,12 +14,12 @@ const b64DecodeUnicode = str =>
       .join('')
   )
 
-const getFileExtension = str => {
+const getFileExtension = (str) => {
   const matches = str.match(/.*\.(.{2,4})$/i)
   return matches && matches[1]
 }
 
-const parseMarkdown = data => {
+const parseMarkdown = (data) => {
   console.log('Parsing md')
   data = matter(data)
   data = { ...data, ...data.data }
@@ -27,13 +27,13 @@ const parseMarkdown = data => {
   return data
 }
 
-const parseYaml = data => {
+const parseYaml = (data) => {
   console.log('Parsing yaml')
-  return yaml.safeLoad(data) || {}
+  return yaml.load(data) || {}
 }
 
 const replaceUploadUrls = (uploads = [], string) => {
-  uploads.forEach(upload => {
+  uploads.forEach((upload) => {
     const url = new URL(upload.download_url)
     if (url.pathname.match(/.svg$/)) {
       url.search += (url.search.slice(1) === '' ? '?' : '&') + 'sanitize=true'
@@ -54,7 +54,7 @@ export const fetchContent = async (rateLimit = 0) => {
 
   const token = await currentUser.jwt()
 
-  const wait = time =>
+  const wait = (time) =>
     new Promise((resolve, reject) => {
       setTimeout(() => resolve(), time)
     })
@@ -67,13 +67,13 @@ export const fetchContent = async (rateLimit = 0) => {
       .then(() =>
         fetch(url, {
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           },
-          cache: 'no-store'
+          cache: 'no-store',
         })
       )
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         if (res.code === 401) throw new Error(res.msg)
         return res
       })
@@ -85,12 +85,12 @@ export const fetchContent = async (rateLimit = 0) => {
     let githubSHA = ''
     let localSHA = ''
     return fetchGithub('refs/heads/master', 'git')
-      .then(ref => {
+      .then((ref) => {
         githubSHA = ref.object.sha
       })
       .then(() => fetch('/sha'))
-      .then(res => res.text())
-      .then(res => (localSHA = res))
+      .then((res) => res.text())
+      .then((res) => (localSHA = res))
       .then(() => {
         if (githubSHA.trim() === localSHA.trim()) {
           return Promise.reject('Github latest commit equal to build')
@@ -107,30 +107,32 @@ export const fetchContent = async (rateLimit = 0) => {
   return checkSHA()
     .then(() => fetchGithub(mediaFolder))
     .then((res = []) => {
-      uploads = res.filter(file => file.type !== 'dir').map(file => ({
-        ...file,
-        publicPath: `${publicFolder}/${file.name}`
-      }))
+      uploads = res
+        .filter((file) => file.type !== 'dir')
+        .map((file) => ({
+          ...file,
+          publicPath: `${publicFolder}/${file.name}`,
+        }))
     })
     .then(() => fetchGithub())
-    .then(items => {
+    .then((items) => {
       if (!items) throw new Error('No items found')
-      const dirs = items.filter(item => item.type === 'dir')
+      const dirs = items.filter((item) => item.type === 'dir')
       return dirs
     })
-    .then(dirs => {
-      const dirsToFetch = dirs.map(dir => {
+    .then((dirs) => {
+      const dirsToFetch = dirs.map((dir) => {
         const dirKey = dir.path.split('/').pop()
         data[dirKey] = []
         return fetchGithub(dir.path)
-          .then(files => {
+          .then((files) => {
             const filesToFetch = files
-              .filter(file => file.type === 'file')
-              .map(file => wait(rateLimit).then(() => fetchGithub(file.path)))
+              .filter((file) => file.type === 'file')
+              .map((file) => wait(rateLimit).then(() => fetchGithub(file.path)))
             return Promise.all(filesToFetch)
           })
-          .then(files => {
-            files.forEach(file => {
+          .then((files) => {
+            files.forEach((file) => {
               const fileType = getFileExtension(file.name)
               let fileContents = b64DecodeUnicode(file.content)
               fileContents = replaceUploadUrls(uploads, fileContents)
