@@ -4,7 +4,7 @@ import Content from '../components/Content'
 import { HomePageHeader } from '../components/PageHeader'
 import './Home.css'
 
-export default ({ fields }) => {
+const Home = ({ fields }) => {
   const { title, subtitle, featuredImage, body } = fields
   return (
     <main className="Home">
@@ -22,3 +22,5 @@ export default ({ fields }) => {
     </main>
   )
 }
+
+export default Home

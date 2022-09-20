@@ -6,7 +6,7 @@ import EnquiryFormSimpleAjax from '../components/EnquiryFormSimpleAjax'
 import Content from '../components/Content'
 import './Contact.css'
 
-export default ({ fields }) => {
+const Contact = ({ fields }) => {
   const { body, title, subtitle, featuredImage, address, phone, email } = fields
   return (
     <div className="Contact">
@@ -55,3 +55,5 @@ export default ({ fields }) => {
     </div>
   )
 }
+
+export default Contact

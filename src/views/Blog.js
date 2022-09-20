@@ -7,17 +7,17 @@ import PostSection from '../components/PostSection'
 
 import './Blog.css'
 
-export default ({
+const Blog = ({
   fields,
   posts = [],
   postCategories = [],
-  showFeatured = true
+  showFeatured = true,
 }) => {
   const { title, subtitle, featuredImage } = fields
   posts = _sortBy(posts, ['date']).reverse()
 
   return (
-    <main className='Blog'>
+    <main className="Blog">
       <PageHeader
         title={title}
         subtitle={subtitle}
@@ -32,3 +32,5 @@ export default ({
     </main>
   )
 }
+
+export default Blog

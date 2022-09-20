@@ -5,7 +5,7 @@ import Logo from './Logo'
 import NavLink from './NavLink'
 import './Nav.css'
 
-export default ({ handlePopupOpen }) => (
+const Nav = ({ handlePopupOpen }) => (
   <nav className="Nav">
     <div className="Nav--Container container">
       <Link to="/">
@@ -26,3 +26,5 @@ export default ({ handlePopupOpen }) => (
     </div>
   </nav>
 )
+
+export default Nav

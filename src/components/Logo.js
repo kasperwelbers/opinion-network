@@ -2,11 +2,13 @@ import React from 'react'
 
 import './Logo.css'
 
-export default ({ inverted }) => (
+const Logo = ({ inverted }) => (
   <div
-    className='Logo'
+    className="Logo"
     style={{
-      backgroundImage: 'url(/images/logo.svg)'
+      backgroundImage: 'url(/images/logo.svg)',
     }}
   />
 )
+
+export default Logo

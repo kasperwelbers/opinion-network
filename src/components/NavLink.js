@@ -3,8 +3,10 @@ import { NavLink } from 'react-router-dom'
 
 import './NavLink.css'
 
-export default ({ className, children, ...props }) => (
+const NavLinkComp = ({ className, children, ...props }) => (
   <NavLink {...props} className={`NavLink ${className || ''}`}>
     {children}
   </NavLink>
 )
+
+export default NavLinkComp

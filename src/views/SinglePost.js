@@ -7,7 +7,7 @@ import BackgroundImage from '../components/BackgroundImage'
 import { dateFormatted } from '../util/date'
 import './SinglePost.css'
 
-export default ({ fields, nextPostURL, prevPostURL }) => {
+const SinglePost = ({ fields, nextPostURL, prevPostURL }) => {
   const { title, date, postFeaturedImage, body, categories = [] } = fields
   return (
     <article className="SinglePost section light">
@@ -67,3 +67,5 @@ export default ({ fields, nextPostURL, prevPostURL }) => {
     </article>
   )
 }
+
+export default SinglePost

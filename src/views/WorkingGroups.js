@@ -7,7 +7,7 @@ import './WorkingGroups.css'
 
 const iconsize = '4em'
 
-export default ({ fields, workinggroups }) => {
+const WorkingGroups = ({ fields, workinggroups }) => {
   const { title, featuredImage } = fields
   const [selected, setSelected] = useState(null)
 
@@ -85,3 +85,5 @@ const WorkingGroupDetails = ({ wg }) => {
     </div>
   )
 }
+
+export default WorkingGroups
