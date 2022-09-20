@@ -69,7 +69,7 @@ export default ({ fields, workinggroups }) => {
             )
           })}
         </div>
-        <WorkingGroupDetails wg={workinggroups?.[selected]} />
+        <WorkingGroupDetails wg={selected != null && workinggroups[selected]} />
       </div>
     </div>
   )
