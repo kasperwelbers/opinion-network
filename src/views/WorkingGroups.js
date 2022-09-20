@@ -22,52 +22,55 @@ export default ({ fields, workinggroups }) => {
         position: 'relative',
       }}
     >
-      {selected == null && (
-        <div
-          style={{
-            textAlign: 'center',
-            color: 'white',
-            paddingTop: '4rem',
-            zIndex: 999,
-            fontSize: '2rem',
-          }}
-        >
-          <h1>{selected == null && title}</h1>
-        </div>
-      )}
       <BackgroundImage src={featuredImage} opacity="0.3" />
-
-      <div className="WorkingGroups">
-        {workinggroups.map((wg, i) => {
-          console.log(selected)
-          return (
-            <div
-              key={wg.title}
-              className={
-                selected != null ? 'WorkingGroup Mini' : 'WorkingGroup'
-              }
-            >
-              <div className="Card fade-in" onClick={() => setSelected(i)}>
-                <div
-                  className="Icon"
-                  style={{ color: selected === i && 'var(--primary-light)' }}
-                >
-                  {i === 0 && <FaBook style={{ fontSize: iconsize }} />}
-                  {i === 1 && <FaToolbox style={{ fontSize: iconsize }} />}
-                  {i === 2 && <FaDatabase style={{ fontSize: iconsize }} />}
-                  {i === 3 && (
-                    <FaBroadcastTower style={{ fontSize: iconsize }} />
-                  )}
+      <div
+        style={{ display: 'flex', flexDirection: 'column', overflow: 'auto' }}
+      >
+        {selected == null && (
+          <div
+            style={{
+              textAlign: 'center',
+              color: 'white',
+              paddingTop: '4rem',
+              zIndex: 999,
+              fontSize: '2rem',
+            }}
+          >
+            <h1>{selected == null && title}</h1>
+          </div>
+        )}
+        <div className="WorkingGroups">
+          {workinggroups.map((wg, i) => {
+            console.log(selected)
+            return (
+              <div
+                key={wg.title}
+                className={
+                  selected != null ? 'WorkingGroup Mini' : 'WorkingGroup'
+                }
+              >
+                <div className="Card fade-in" onClick={() => setSelected(i)}>
+                  <div
+                    className="Icon"
+                    style={{ color: selected === i && 'var(--primary-light)' }}
+                  >
+                    {i === 0 && <FaBook style={{ fontSize: iconsize }} />}
+                    {i === 1 && <FaToolbox style={{ fontSize: iconsize }} />}
+                    {i === 2 && <FaDatabase style={{ fontSize: iconsize }} />}
+                    {i === 3 && (
+                      <FaBroadcastTower style={{ fontSize: iconsize }} />
+                    )}
+                  </div>
+                  <h3>{wg.title}</h3>
                 </div>
-                <h3>{wg.title}</h3>
+                {/* <span>{wg.subtitle}</span> */}
+                {/* <LazyImage src={wg.featuredImage} alt="LazyImage" /> */}
               </div>
-              {/* <span>{wg.subtitle}</span> */}
-              {/* <LazyImage src={wg.featuredImage} alt="LazyImage" /> */}
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
+        <WorkingGroupDetails wg={workinggroups?.[selected]} />
       </div>
-      <WorkingGroupDetails wg={workinggroups?.[selected]} />
     </div>
   )
 }

@@ -9,27 +9,15 @@
 .WorkingGroup {
   color: white;
   text-align: center;
-  flex: 1 0 100%;
+  flex: 1 0 50%;
   padding: 3rem;
   transition: font-size 0s;
   z-index: 999;
 }
 
-@media screen and (min-width: 300px) {
-  .WorkingGroup {
-    flex: 1 0 50%;
-  }
-}
-
-@media screen and (min-width: 600px) {
-  .WorkingGroup {
-    flex: 1 0 25%;
-  }
-}
-
 .WorkingGroup.Mini {
-  flex: 0 0 15%;
-  font-size: 0.5em;
+  flex: 0 1 25%;
+  font-size: 0.7rem;
   animation: fadeIn 1s;
 }
 
@@ -38,24 +26,24 @@
   font-size: 0em;
 }
 
-.WorkingGroup > .Card {
+.WorkingGroup .Card {
   cursor: pointer;
-  border: 1px solid white;
-  padding: 1rem;
+  /* border: 1px solid white;
+  padding: 1em; */
   border-radius: 10px;
   height: 100%;
 }
 
-.WorkingGroup > .Card:hover {
+.WorkingGroup .Card:hover {
   color: var(--primary-light);
   transition: transform 0.2s;
   transform: translateY(-0.5rem);
 }
 
-.WorkingGroup > .Icon {
+.WorkingGroup .Icon {
 }
 
-.WorkingGroup > h3 {
+.WorkingGroup h3 {
   color: white;
 }
 
