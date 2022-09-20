@@ -1,7 +1,7 @@
 .PageHeader {
   background-color: var(--darkGrey);
   color: white;
-  padding: 15rem 0;
+  padding: 7rem 0;
 }
 
 .PageHeader-large {
@@ -9,7 +9,7 @@
 }
 
 .PageHeader--Title {
-  font-size: 6rem;
+  font-size: 4.5rem;
   margin-bottom: 0;
 }
 
@@ -44,10 +44,8 @@
 }
 
 .HomePageHeader .BackgroundImage {
-  --slide-from: 100%;
-  --slide-from-y: -50%;
-  animation: slideIn 0.5s, fadeIn 2s;
-  -webkit-animation: slideIn 0.3s, fadeIn 2s;
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
   position: absolute;
   left: 60%;
   right: 0;

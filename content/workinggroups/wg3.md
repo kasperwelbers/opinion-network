@@ -1,5 +1,6 @@
 ---
-title: wg3
-featuredImage: /images/uploads/tim-marshall-155597.jpg
-subtitle: What we're all about
+title: Data
+subtitle: (not used, maybe add)
 ---
+
+This should be a **markdown text** explaining a bit about the work package.

@@ -1,5 +1,6 @@
 ---
-title: wg4
-featuredImage: /images/uploads/tim-marshall-155597.jpg
-subtitle: What we're all about
+title: Dissemination
+subtitle: (not used, maybe add)
 ---
+
+This should be a **markdown text** explaining a bit about the work package.

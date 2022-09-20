@@ -1,31 +1,72 @@
 .WorkingGroups {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-items: center;
   padding: 2rem;
-  min-height: 100%;
+  margin: 0 auto;
 }
 
 .WorkingGroup {
-  color: var(--primary);
+  color: white;
   text-align: center;
   flex: 1 0 100%;
   padding: 3rem;
+  transition: font-size 0s;
+  z-index: 999;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 300px) {
   .WorkingGroup {
     flex: 1 0 50%;
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 600px) {
   .WorkingGroup {
     flex: 1 0 25%;
   }
 }
 
+.WorkingGroup.Mini {
+  flex: 0 0 15%;
+  font-size: 0.5em;
+  animation: fadeIn 1s;
+}
+
+.WorkingGroup.Mini h3 {
+  transition: font-size 0s;
+  font-size: 0em;
+}
+
+.WorkingGroup > .Card {
+  cursor: pointer;
+  border: 1px solid white;
+  padding: 1rem;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.WorkingGroup > .Card:hover {
+  color: var(--primary-light);
+  transition: transform 0.2s;
+  transform: translateY(-0.5rem);
+}
+
+.WorkingGroup > .Icon {
+}
+
+.WorkingGroup > h3 {
+  color: white;
+}
+
 .WorkingGroup .LazyImage {
   max-width: 100%;
+}
+
+.WorkingGroupDetails {
+  text-align: center;
+  padding: 1rem 5rem 0 5rem;
+  animation: fadeIn 2s;
+  z-index: 999;
+  color: white;
 }

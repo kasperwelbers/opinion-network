@@ -151,19 +151,16 @@ class App extends Component {
                 postCategories={postCategories}
               /> */}
 
-              {/* {workingroups.map((group, index) => {
+              {/* {workinggroups.map((group, index) => {
                 const slug = slugify(group.title)
                 const path = slugify(`/workinggroups/${slug}`)
-                const categoryPosts = posts.filter((post) =>
-                  documentHasTerm(post, 'categories', slug)
-                )
                 return (
                   <RouteWithMeta
                     key={path}
                     path={path}
                     exact
-                    component={Blog}
-                    fields={this.getDocument('pages', 'blog')}
+                    component={WorkingGroup}
+                    fields={this.getDocument('pages', 'workinggroup')}
                     posts={categoryPosts}
                     postCategories={postCategories}
                   />

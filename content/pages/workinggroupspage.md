@@ -1,6 +1,7 @@
 ---
 title: Working Groups
-subtitle: What we're all about
+featuredImage: /images/uploads/pikwizard-aerial-view-cities-city-europe.jpeg
+subtitle:
 meta:
   noindex: false
 ---

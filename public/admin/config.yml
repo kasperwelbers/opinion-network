@@ -89,6 +89,7 @@ collections: # A list of collections the CMS should be able to edit
         name: 'wg-page'
         fields:
           - { label: Title, name: title, widget: string }
+          - { label: Featured Image, name: featuredImage, widget: image }
           - { label: Subtitle, name: subtitle, widget: string }
 
           - label: 'Meta'
@@ -293,8 +294,8 @@ collections: # A list of collections the CMS should be able to edit
     create: false # Allow users to create new documents in this collection
     fields: # The fields each document in this collection have
       - { label: Title, name: title, widget: string }
-      - { label: Featured Image, name: featuredImage, widget: image }
       - { label: Subtitle, name: subtitle, widget: markdown }
+      - { label: Content, name: body, widget: markdown }
       - label: 'Meta'
         required: false
         name: 'meta'

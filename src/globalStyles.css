@@ -225,7 +225,7 @@ blockquote {
 @keyframes slideIn {
   0% {
     transform: translateX(var(--slide-from, -100%))
-      translateY(var(--slide-from-y, -100%));
+      translateY(var(--slide-from-y, 0%));
   }
   100% {
     transform: translateX(0%) translateY(0%);
@@ -235,7 +235,7 @@ blockquote {
 @-webkit-keyframes slideIn {
   0% {
     -webkit-transform: translateX(var(--slide-from, -100%))
-      translateY(var(--slide-from-y, -100%));
+      translateY(var(--slide-from-y, 0%));
   }
   100% {
     -webkit-transform: translateX(0%) translateY(0%);
@@ -261,5 +261,14 @@ blockquote {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes wait {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
   }
 }

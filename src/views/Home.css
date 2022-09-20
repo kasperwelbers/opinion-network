@@ -1,2 +1,8 @@
 .Home {
 }
+
+.HomeBody {
+  --slide-from: 0%;
+  --slide-from-y: 100%;
+  animation: fadeIn 3s;
+}

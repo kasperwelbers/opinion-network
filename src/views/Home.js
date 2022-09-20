@@ -14,7 +14,7 @@ export default ({ fields }) => {
         backgroundImage={featuredImage}
       />
 
-      <div className="section">
+      <div className="section HomeBody">
         <div className="container">
           <Content source={body} />
         </div>
