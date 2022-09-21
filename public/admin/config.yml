@@ -86,6 +86,8 @@ collections: # A list of collections the CMS should be able to edit
 
       - file: 'content/pages/workinggroupspage.md'
         label: 'Working Groups'
+        editor:
+          preview: false
         name: 'wg-page'
         fields:
           - { label: Title, name: title, widget: string }
@@ -288,7 +290,7 @@ collections: # A list of collections the CMS should be able to edit
     label: Working group
     editor:
       preview: false
-    folder: content/workinggroup
+    folder: content/workinggroups
     slug: '{{slug}}'
     create: false # Allow users to create new documents in this collection
     fields: # The fields each document in this collection have
