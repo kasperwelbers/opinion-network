@@ -41,7 +41,6 @@ const WorkingGroups = ({ fields, workinggroups }) => {
         )}
         <div className="WorkingGroups">
           {workinggroups.map((wg, i) => {
-            console.log(selected)
             return (
               <div
                 key={wg.title}

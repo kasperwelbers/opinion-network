@@ -12,7 +12,7 @@ collections: # A list of collections the CMS should be able to edit
     label: 'Page'
     delete: false # Prevent users from deleting documents in this collection
     editor:
-      preview: true
+      preview: false
     files:
       - file: 'content/pages/contact.md'
         label: 'Contact Page'
@@ -156,7 +156,7 @@ collections: # A list of collections the CMS should be able to edit
   - name: posts
     label: Post
     editor:
-      preview: true
+      preview: false
     folder: content/posts
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     create: true # Allow users to create new documents in this collection
