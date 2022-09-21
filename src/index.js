@@ -1,7 +1,7 @@
 import React from 'react'
 //import { render } from 'react-snapshot'
-//import { render } from 'react-dom'
-import { createRoot } from 'react-dom/client'
+import { render } from 'react-dom'
+//import { createRoot } from 'react-dom/client'
 import 'modern-normalize/modern-normalize.css'
 import './globalStyles.css'
 import App from './App'
@@ -13,8 +13,9 @@ import App from './App'
 // CMS.registerPreviewTemplate('my-template', MyTemplate)
 
 const rootEl = document.getElementById('root')
-const root = createRoot(rootEl)
-root.render(<App />)
+//const root = createRoot(rootEl)
+//root.render(<App />)
+render(<App />, rootEl)
 
 // if (module.hot) {
 //   module.hot.accept('./App', () => {
@@ -23,9 +24,9 @@ root.render(<App />)
 //   })
 // }
 
-if (process.env.REACT_APP_SITE_URL && 'localStorage' in window) {
-  window.localStorage.setItem('netlifySiteURL', process.env.REACT_APP_SITE_URL)
-}
+// if (process.env.REACT_APP_SITE_URL && 'localStorage' in window) {
+//   window.localStorage.setItem('netlifySiteURL', process.env.REACT_APP_SITE_URL)
+// }
 
 // const globalSettings =
 //   data.settings && data.settings.filter((doc) => doc.name === 'global')[0]
