@@ -12,6 +12,7 @@ import Contact from './views/Contact'
 import NoMatch from './views/NoMatch'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
+import Admin from './views/Admin'
 import ServiceWorkerNotifications from './components/ServiceWorkerNotifications'
 import data from './data.json'
 import { slugify } from './util/url'
@@ -97,6 +98,7 @@ class App extends Component {
                 description={siteDescription}
                 fields={this.getDocument('pages', 'home')}
               />
+              <Route path="/admin/" exact component={Admin} />
               <RouteWithMeta
                 path="/workinggroups/"
                 exact
