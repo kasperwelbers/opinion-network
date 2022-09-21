@@ -41,6 +41,7 @@ const WorkingGroups = ({ fields, workinggroups }) => {
         )}
         <div className="WorkingGroups">
           {workinggroups.map((wg, i) => {
+            console.log(wg)
             return (
               <div
                 key={wg.title}
@@ -53,10 +54,16 @@ const WorkingGroups = ({ fields, workinggroups }) => {
                     className="Icon"
                     style={{ color: selected === i && 'var(--primary-light)' }}
                   >
-                    {i === 0 && <FaBook style={{ fontSize: iconsize }} />}
-                    {i === 1 && <FaToolbox style={{ fontSize: iconsize }} />}
-                    {i === 2 && <FaDatabase style={{ fontSize: iconsize }} />}
-                    {i === 3 && (
+                    {wg.name === 'wp1' && (
+                      <FaBook style={{ fontSize: iconsize }} />
+                    )}
+                    {wg.name === 'wp2' && (
+                      <FaToolbox style={{ fontSize: iconsize }} />
+                    )}
+                    {wg.name === 'wp3' && (
+                      <FaDatabase style={{ fontSize: iconsize }} />
+                    )}
+                    {wg.name === 'wp4' && (
                       <FaBroadcastTower style={{ fontSize: iconsize }} />
                     )}
                   </div>
