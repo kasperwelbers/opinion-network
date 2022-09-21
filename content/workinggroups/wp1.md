@@ -1,5 +1,5 @@
 ---
-title: Data
+title: Theory
 subtitle: (not used, maybe add)
 ---
 
