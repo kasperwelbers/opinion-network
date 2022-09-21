@@ -5,8 +5,12 @@ import { createRoot } from 'react-dom/client'
 import 'modern-normalize/modern-normalize.css'
 import './globalStyles.css'
 import App from './App'
+//import CMS from 'netlify-cms-app'
 // import registerServiceWorker, { unregister } from './registerServiceWorker'
 // import data from './data.json'
+
+// CMS.init()
+// CMS.registerPreviewTemplate('my-template', MyTemplate)
 
 const rootEl = document.getElementById('root')
 const root = createRoot(rootEl)
